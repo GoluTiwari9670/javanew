@@ -1,0 +1,56 @@
+import React from 'react';
+import { Button, View, Text,Alert } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
+
+const Press = () =>{
+
+  Alert.alert("Button is pressed ");
+}
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
+      screenOptions={{headerStyle:{backgroundColor:' darkred'},headerTitleStyle:{fontSize:35, marginLeft:40}}}
+      >
+        <Stack.Screen name="Login" component={Login} 
+        options={{ headerTitle:()=><Button title="Submit" onPress={Press}/>,
+        headerStyle:{
+          backgroundColor:'grey'
+        },
+        headerTitleStyle:
+        {
+          fontSize:25,
+          MarginLeft:100,
+        }
+        }}/>
+        <Stack.Screen name="Home" component={Home} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+const Home = () => {
+  return (
+    <View>
+      <Text>Home</Text>
+    </View>
+  );
+};
+
+const Login = (props) => {
+  return (
+    <View>
+      <Text>Login</Text>00
+      <Button 
+        title="Welcome to Home" 
+        onPress={() => props.navigation.navigate("Home")} 
+      />
+    </View>
+  );
+};
+
+export default App;
